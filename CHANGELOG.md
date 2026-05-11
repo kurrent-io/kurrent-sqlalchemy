@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - Unreleased
+
+### Changed
+
+- Renamed PyPI distribution from `kurrentdb-sqlalchemy` to `kurrent-sqlalchemy`
+  and Python module from `kurrentdb_sqlalchemy` to `kurrent_sqlalchemy` so
+  package names align with the `kurrent-io/kurrent-sqlalchemy` repository.
+- The SQLAlchemy URL scheme (`kurrentdb+flightsql://`), dialect class
+  (`KurrentDBDialect`), and engine spec class (`KurrentDBEngineSpec`) are
+  unchanged. Existing connection strings and Superset configurations
+  continue to work without modification — only the import path changes.
+
+### Migration from 0.2.0
+
+\`\`\`python
+# Before
+from kurrentdb_sqlalchemy.superset import KurrentDBEngineSpec, install_superset_patches
+
+# After
+from kurrent_sqlalchemy.superset import KurrentDBEngineSpec, install_superset_patches
+\`\`\`
+
 ## [0.2.0] - Unreleased
 
 ### Added

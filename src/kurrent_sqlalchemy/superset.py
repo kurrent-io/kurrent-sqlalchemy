@@ -4,7 +4,7 @@ Importing this module requires Apache Superset to be installed.
 
 Wire it up in ``superset_config.py``::
 
-    from kurrentdb_sqlalchemy.superset import (
+    from kurrent_sqlalchemy.superset import (
         KurrentDBEngineSpec,
         install_superset_patches,
     )
@@ -37,11 +37,11 @@ try:
     from superset.db_engine_specs.base import BaseEngineSpec
 except ImportError as exc:  # pragma: no cover
     raise ImportError(
-        "kurrentdb_sqlalchemy.superset requires Apache Superset to be "
-        "installed. Install with `pip install kurrentdb-sqlalchemy[superset]`."
+        "kurrent_sqlalchemy.superset requires Apache Superset to be "
+        "installed. Install with `pip install kurrent-sqlalchemy[superset]`."
     ) from exc
 
-from kurrentdb_sqlalchemy._internal import (
+from kurrent_sqlalchemy._internal import (
     DEFAULT_TEST_QUERY,
     ENV_TEST_QUERY,
     KURRENTDB_ENGINE_NAME,

@@ -1,0 +1,2 @@
+[sqlalchemy.dialects]
+kurrentdb.flightsql = kurrent_sqlalchemy.dialect:KurrentDBDialect

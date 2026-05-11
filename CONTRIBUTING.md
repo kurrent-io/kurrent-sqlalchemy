@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in improving `kurrentdb-sqlalchemy`.
+Thanks for your interest in improving `kurrent-sqlalchemy`.
 
 ## Reporting issues
 
@@ -16,8 +16,8 @@ If KurrentDB rejects a query that's syntactically valid PostgreSQL, that's most 
 ## Local development
 
 ```sh
-git clone https://github.com/kurrent-io/kurrentdb-sqlalchemy.git
-cd kurrentdb-sqlalchemy
+git clone https://github.com/kurrent-io/kurrent-sqlalchemy.git
+cd kurrent-sqlalchemy
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -37,7 +37,7 @@ The smoke tests don't require a running KurrentDB. If you want integration tests
 
 See `docs/PYPI-SETUP.md` for the PyPI publishing setup. Once configured:
 
-1. Bump `version` in `pyproject.toml` and `__version__` in `src/kurrentdb_sqlalchemy/__init__.py`.
+1. Bump `version` in `pyproject.toml` and `__version__` in `src/kurrent_sqlalchemy/__init__.py`.
 2. Move `## [Unreleased]` in `CHANGELOG.md` to a new dated version section.
 3. Commit, tag (`git tag vX.Y.Z`), push (`git push && git push --tags`).
 4. Create a GitHub Release pointing at the tag. The release workflow handles PyPI upload.
