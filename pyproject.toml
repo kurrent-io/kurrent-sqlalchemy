@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kurrentdb-sqlalchemy"
+version = "0.2.0"
+description = "SQLAlchemy dialect and Apache Superset engine spec for KurrentDB's Arrow Flight SQL endpoint."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Kurrent, Inc.", email = "info@kurrent.io" },
+]
+requires-python = ">=3.9"
+keywords = ["sqlalchemy", "kurrentdb", "eventstore", "flightsql", "arrow", "superset"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Database :: Front-Ends",
+]
+dependencies = [
+    "flightsql-dbapi>=0.2",
+    "sqlalchemy>=1.4,<3",
+]
+
+[project.optional-dependencies]
+superset = ["apache-superset>=4.0"]
+dev = ["pytest>=7", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/kurrent-io/kurrentdb-sqlalchemy"
+Issues = "https://github.com/kurrent-io/kurrentdb-sqlalchemy/issues"
+Source = "https://github.com/kurrent-io/kurrentdb-sqlalchemy"
+
+# Auto-register the dialect so ``kurrentdb+flightsql://`` URIs work
+# without an explicit import after ``pip install``.
+[project.entry-points."sqlalchemy.dialects"]
+"kurrentdb.flightsql" = "kurrentdb_sqlalchemy.dialect:KurrentDBDialect"
+
+[tool.setuptools.packages.find]
+where = ["src"]
