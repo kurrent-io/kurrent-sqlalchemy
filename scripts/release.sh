@@ -49,29 +49,24 @@ python3 - "$version" <<'PY'
 import pathlib, re, sys
 version = sys.argv[1]
 
-pyproject = pathlib.Path("pyproject.toml")
-text = pyproject.read_text()
-new = re.sub(
-    r'(?m)^version\s*=\s*"[^"]+"',
-    f'version = "{version}"',
-    text,
-    count=1,
-)
-if new == text:
-    sys.exit("Could not update version in pyproject.toml")
-pyproject.write_text(new)
+def bump(path: pathlib.Path, pattern: str, replacement: str, label: str) -> None:
+    text = path.read_text()
+    if not re.search(pattern, text, flags=re.MULTILINE):
+        sys.exit(f"Could not locate {label} in {path}")
+    path.write_text(re.sub(pattern, replacement, text, count=1, flags=re.MULTILINE))
 
-init = pathlib.Path("src/kurrent_sqlalchemy/__init__.py")
-text = init.read_text()
-new = re.sub(
-    r'(?m)^__version__\s*=\s*"[^"]+"',
-    f'__version__ = "{version}"',
-    text,
-    count=1,
+bump(
+    pathlib.Path("pyproject.toml"),
+    r'^version\s*=\s*"[^"]+"',
+    f'version = "{version}"',
+    "version field",
 )
-if new == text:
-    sys.exit("Could not update __version__ in src/kurrent_sqlalchemy/__init__.py")
-init.write_text(new)
+bump(
+    pathlib.Path("src/kurrent_sqlalchemy/__init__.py"),
+    r'^__version__\s*=\s*"[^"]+"',
+    f'__version__ = "{version}"',
+    "__version__",
+)
 PY
 
 python3 - "$version" "$today" <<'PY'
