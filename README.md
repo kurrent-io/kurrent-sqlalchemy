@@ -177,6 +177,29 @@ The upstream [`influxdata/flightsql-dbapi`](https://github.com/influxdata/flight
 
 Issues and pull requests welcome. Please include the KurrentDB version you're running against — the Flight SQL implementation is moving, and what works on RC2 may not work on later builds.
 
+## Releasing (maintainers)
+
+Releases are driven by `scripts/release.sh`. Before running it:
+
+1. Make sure all changes for the release are merged to `main`.
+2. Ensure `CHANGELOG.md` has a `## [X.Y.Z] - Unreleased` section describing what's in the release.
+
+Then from a clean checkout of `main`:
+
+```sh
+scripts/release.sh 0.2.1
+```
+
+The script will:
+
+- Refuse to run if the working tree is dirty, you're not on `main`, or the tag already exists.
+- Update `version` in `pyproject.toml` and `__version__` in `src/kurrent_sqlalchemy/__init__.py`.
+- Replace `## [X.Y.Z] - Unreleased` in `CHANGELOG.md` with today's date.
+- Show the diff and ask for confirmation.
+- Commit, create an annotated `vX.Y.Z` tag, and push both to `origin`.
+
+The tag push triggers `.github/workflows/publish.yml`, which builds the sdist + wheel, publishes to PyPI via trusted publishing, and creates the GitHub release using the matching CHANGELOG section as the release notes.
+
 ## License
 
 Apache 2.0. See [LICENSE](LICENSE).

@@ -35,12 +35,7 @@ The smoke tests don't require a running KurrentDB. If you want integration tests
 
 ## Release process (maintainers)
 
-See `docs/PYPI-SETUP.md` for the PyPI publishing setup. Once configured:
-
-1. Bump `version` in `pyproject.toml` and `__version__` in `src/kurrent_sqlalchemy/__init__.py`.
-2. Move `## [Unreleased]` in `CHANGELOG.md` to a new dated version section.
-3. Commit, tag (`git tag vX.Y.Z`), push (`git push && git push --tags`).
-4. Create a GitHub Release pointing at the tag. The release workflow handles PyPI upload.
+See the [Releasing](README.md#releasing-maintainers) section in the README. The short version: ensure `CHANGELOG.md` has a `## [X.Y.Z] - Unreleased` section, then run `scripts/release.sh X.Y.Z` from a clean `main`. The tag push triggers `.github/workflows/publish.yml`, which publishes to PyPI via trusted publishing and creates the GitHub release.
 
 ## License
 

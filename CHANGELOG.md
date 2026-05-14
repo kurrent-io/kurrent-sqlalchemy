@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1] - Unreleased
 
+### Added
+
+- First PyPI release under the new `kurrent-sqlalchemy` name.
+- GitHub Actions workflow (`.github/workflows/publish.yml`) that builds the
+  package on `v*` tag push, uploads it to PyPI via trusted publishing, and
+  creates a GitHub release with notes drawn from the matching CHANGELOG
+  section.
+- `scripts/release.sh` to automate the release cut: bumps version in
+  `pyproject.toml` and `__init__.py`, dates the CHANGELOG entry, commits,
+  tags, and pushes.
+- Standard Python `.gitignore`.
+
 ### Changed
 
 - Renamed PyPI distribution from `kurrentdb-sqlalchemy` to `kurrent-sqlalchemy`
