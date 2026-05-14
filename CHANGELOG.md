@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - Unreleased
+
+### Added
+
+- `tests.yml` workflow runs the smoke tests on `pull_request` and on
+  pushes to `main`, across a Python 3.9–3.12 matrix.
+
+### Changed
+
+- `publish.yml` now invokes `tests.yml` first and only builds, publishes,
+  and releases when the tests pass.
+- Bumped GitHub Actions to versions running on Node.js 24:
+  `actions/checkout@v6`, `actions/setup-python@v6`,
+  `actions/upload-artifact@v7`, `actions/download-artifact@v7`.
+
 ## [0.2.1] - 2026-05-14
 
 ### Added
